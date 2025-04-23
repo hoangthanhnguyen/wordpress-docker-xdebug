@@ -39,6 +39,7 @@ xdebug.log=/tmp/xdebug.log
 
 <aside>
 💡
+
 **Chú ý:**
 `xdebug.client_host` là địa chỉ của nơi debug.
 
@@ -98,6 +99,7 @@ volumes:
 
 <aside>
 💡
+
 **Chú ý:**
 
 Ở dòng khai báo `volumes`, `/var/www/wordpress:/var/www/html` sẽ hoạt động như sau: Khi docker chạy thành công, source code trong `/var/www/html` sẽ được copy ra `/var/www/wordpress` nếu `/var/www/wordpress` đang ko có file nào, còn nếu `/var/www/wordpress` đang có file thì sẽ sử dụng file đang có để ném vào docker
