@@ -1,4 +1,4 @@
-# Setup Wordpress docker (all plugins)
+# How to setup Wordpress docker
 
 ## Bước 1: Tạo project docker và folder chứa source code
 
