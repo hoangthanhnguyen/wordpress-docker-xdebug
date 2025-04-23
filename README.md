@@ -38,9 +38,7 @@ xdebug.log=/tmp/xdebug.log
 ```
 
 <aside>
-💡
-
-**Chú ý:**
+💡**Chú ý:**
 `xdebug.client_host` là địa chỉ của nơi debug.
 
 → Nếu dùng VSCode ssh lên server và debug trực tiếp trên đó thì phải set `xdebug.client_host` là địa chỉ của gateway (sau khi chạy docker compose thì vào check gateway bằng cách chạy lệnh `docker inspect wordpress | grep Gateway` → do thử [localhost](http://localhost) hay 127.0.0.1 thì xdebug.log trả ra lỗi `[61] [Step Debug] ERR: Could not connect to debugging client. Tried: 127.0.0.1:9003 (through xdebug.client_host/xdebug.client_port).`)
@@ -98,9 +96,7 @@ volumes:
 ```
 
 <aside>
-💡
-
-**Chú ý:**
+💡**Chú ý:**
 
 Ở dòng khai báo `volumes`, `/var/www/wordpress:/var/www/html` sẽ hoạt động như sau: Khi docker chạy thành công, source code trong `/var/www/html` sẽ được copy ra `/var/www/wordpress` nếu `/var/www/wordpress` đang ko có file nào, còn nếu `/var/www/wordpress` đang có file thì sẽ sử dụng file đang có để ném vào docker
 
