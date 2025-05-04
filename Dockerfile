@@ -5,3 +5,6 @@ FROM wordpress:latest
 
    # Copy custom xdebug.ini
    COPY xdebug.ini /usr/local/etc/php/conf.d/xdebug.ini
+
+   # Copy custom php.ini settings
+   COPY custom.ini /usr/local/etc/php/conf.d/custom.ini

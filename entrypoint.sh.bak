@@ -1,0 +1,44 @@
+#!/bin/bash
+
+# Debug: Check permissions of /var/www/html
+echo "Checking permissions..."
+ls -ld /var/www/html
+
+# Create backup directory on host
+echo "Creating backup directory..."
+mkdir -p /var/www/wordpress_backups
+chown www-data:www-data /var/www/wordpress_backups
+chmod 755 /var/www/wordpress_backups
+
+# Backup /var/www/html if it contains files
+if [ -n "$(ls -A /var/www/html)" ]; then
+    echo "Backing up /var/www/html..."
+    tar -czf /var/www/wordpress_backups/wordpress_backup_$(date +%Y%m%d_%H%M%S).tar.gz -C /var/www/html .
+    if [ $? -eq 0 ]; then
+        echo "Backup successful."
+    else
+        echo "Backup failed."
+    fi
+else
+    echo "No files to backup in /var/www/html."
+fi
+
+# Ensure /wp-content/plugins and uploads exist
+echo "Creating wp-content directories..."
+mkdir -p /var/www/html/wp-content/plugins
+mkdir -p /var/www/html/wp-content/uploads
+
+# Set permissions on /var/www/html
+echo "Setting permissions..."
+chown -R www-data:www-data /var/www/html
+chmod -R 755 /var/www/html
+chmod -R 775 /var/www/html/wp-content/plugins
+chmod -R 775 /var/www/html/wp-content/uploads
+
+# Debug: List files in /var/www/html
+echo "Listing files in /var/www/html..."
+ls -l /var/www/html
+
+# Start Apache
+echo "Starting Apache..."
+exec apache2-foreground
